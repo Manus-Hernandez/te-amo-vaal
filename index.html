@@ -41,7 +41,7 @@ background:#ffffff10;color:white;font-size:15px}
 <div id="intro" onclick="openLetter()">
   <div class="intro">
     <div class="env">💌</div>
-    <div id="introText" style="font-size:24px;line-height:1.65;min-height:220px"></div>
+    <div id="introText" style="font-size:24px;line-height:1.65;min-height:300px;max-height:72vh;overflow:hidden"></div>
     <div class="hint">TOCA LA PANTALLA</div>
   </div>
 </div>
@@ -69,6 +69,7 @@ background:#ffffff10;color:white;font-size:15px}
 let ytPlayer=null;
 let youtubeReady=false;
 let pendingPlay=false;
+const MUSIC_START=20; // segundos: entra directamente después de la introducción
 
 // Video oficial de Río Roma: Mi Persona Favorita
 function onYouTubeIframeAPIReady(){
@@ -85,6 +86,7 @@ function onYouTubeIframeAPIReady(){
     events:{
       onReady:function(){
         youtubeReady=true;
+        ytPlayer.seekTo(MUSIC_START,true);
         if(pendingPlay) playMusic();
       }
     }
@@ -95,6 +97,7 @@ function playMusic(){
   if(ytPlayer && youtubeReady){
     ytPlayer.unMute();
     ytPlayer.setVolume(65);
+    ytPlayer.seekTo(MUSIC_START,true);
     ytPlayer.playVideo();
   }
 }
@@ -110,9 +113,28 @@ function openLetter(){
     'Aún recuerdo nuestro primer beso...',
     'Yo tan nervioso,',
     'y tú tan hermosa. ❤️',
+    'Parece increíble que un momento pudiera quedarse tan grabado en mi corazón.',
+    'Desde aquel día, algo cambió en mí.',
+    'Y con el tiempo descubrí que no solo me gustabas...',
+    'me estaba enamorando de ti.',
+    'Me encanta tu sonrisa,',
+    'esa sonrisa hermosa que puede cambiar por completo mi día. ❤️',
+    'Me encanta tu sencillez,',
+    'tu forma tan natural de ser, sin pretender ser alguien más.',
+    'Me encanta que seas simplemente tú,',
+    'porque esa mujer auténtica, sencilla y hermosa es de quien me enamoré.',
     'Y aún sigo enamorado de ti,',
     'más que la primera vez que te conocí.',
-    'Gracias por llegar a mi vida. ❤️'
+    'Cada día encuentro una razón nueva para quererte un poquito más.',
+    'Gracias por llegar a mi vida.',
+    'Gracias por cada sonrisa, cada abrazo, cada momento y cada recuerdo.',
+    'Si pudiera volver al día de nuestro primer beso,',
+    'lo volvería a elegir una y mil veces.',
+    'Porque entre tantas personas,',
+    'la vida me llevó hasta ti... ❤️',
+    'Y hoy solo quiero que nunca olvides algo:',
+    'TE AMO, VALERIA.',
+    'Y te elegiría otra vez. ❤️'
   ];
 
   hint.textContent='';
@@ -126,7 +148,7 @@ function openLetter(){
       setTimeout(()=>{
         intro.classList.add('hide');
         setInterval(heart,450);
-      },1800);
+      },3200);
       return;
     }
 
